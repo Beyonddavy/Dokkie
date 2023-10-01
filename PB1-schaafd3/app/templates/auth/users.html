@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Gebruikers{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <table>
+    <tr>
+      <th>Voornaam</th>
+      <th>Achternaam</th>
+      <th>emailadres</th>
+      <th>Organisator</th>
+      <th>Telefoon</th>
+    </tr>
+    <tbody>
+      {% for user in users %}
+        <tr>
+          <td>{{ user['firstname'] }}</td>
+          <td>{{ user['lastname'] }} </td>
+          <td>{{ user['emailaddress'] }}</td>
+          <td>{{ user['isOrganizer'] }}</td>
+          <td>{{ user['telephonenumber'] }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

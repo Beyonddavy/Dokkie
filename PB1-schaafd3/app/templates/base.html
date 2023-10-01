@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Dokkie - {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/issue_37.css')}}"/>
+  </head>
+
+  <body class="main">
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('main.index') }}">Home</a></li>
+        <li><a href="{{ url_for('events.index') }}">Uitjes</a></li>
+        <li><a href="{{ url_for('main.mypayments') }}">Betaalverzoeken</a></li>
+        <li><a href="{{ url_for('auth.users') }}">Gebruikers</a></li>
+        {% if g.user %}
+          <li><a href="{{ url_for('auth.logout') }}">Uitloggen</a></li>
+          <li><a href="{{ url_for('auth.edit') }}">{{ g.user['firstname'] }}</a></li>
+        {% else %}
+          <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+          <li><a href="{{ url_for('auth.register') }}">Registreren</a></li>
+          <li><a href="{{ url_for('main.about') }}">About Dokkie</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+    <header>
+      {% block header %}{% endblock %}
+    </header>
+    <div>
+      {% block content %}{% endblock %}
+    </div>
+    <footer id="footer">
+      Developed Dokkie in Python en Flask
+    </footer>
+  </body>
+</html>

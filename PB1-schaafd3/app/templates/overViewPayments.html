@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Betaalverzoeken{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  {% if transactions %}
+    <table>
+      <thead>
+        <th>Uitje</th>
+        <th>Datum uitje</th>
+        <th>Betalingstype</th>
+        <th>Bedrag</th>
+        <th>Deelnemer</th>
+        <th>Betaald</th>
+        <th>Openstaand</th>
+        <th>Betalen</th>
+        <th>Versturen</th>
+      <thead>
+      <tbody>
+        {% for transaction in transactions %}
+          <tr onmouseover="this.bgColor='#C0C0C0'" onmouseout="this.bgColor=''">
+            <td>{{ transaction['description'] }}</td>
+            <td>{{ transaction['eventDate'] }}</td>
+            <td>{{ transaction['type'] }}</td>
+            <td>{{ transaction['amount'] }}</td>
+            <td>{{ transaction['firstname'] }} {{ transaction['lastname'] }}</td>
+            <td>{{ transaction['isPaid'] }}</td>
+            <td>{{ (transaction['totalAmount'] - transaction['paidAmount']) | round(1, 'floor') }}
+            </td>
+            {% if transaction['type'] == 'P' and not transaction['isPaid'] %}
+              <td id="alignleft">
+                <a href="{{ url_for('main.transaction_settle', id=transaction['expenditureId']) }}">Betaald</a>
+              </td>
+              <td>
+                <a href="{{ url_for('main.transaction_notify', id=transaction['expenditureId']) }}">WhatsApp</a>
+              </td>
+            {% endif %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>Er zijn op dit moment geen betaalverzoeken.</p>
+  {% endif %}
+{% endblock %}

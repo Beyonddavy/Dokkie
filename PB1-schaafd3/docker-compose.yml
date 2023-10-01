@@ -1,0 +1,60 @@
+# Docker Compose documentation: https://docs.docker.com/compose/
+#
+# This file will be used by the hva-fys cloud server to build your application
+# Instructions
+# 1. replace the keyword YOUR_UNIQUE_PROJECTID with the full name of your project. Make sure it includes your Gitlab user name
+# 2. Change the values of GITLABUSER and PROJECTNAME and DB_PASSWORD. Replace those with your gitlab user name, 
+#    the projectname and a very strong password. Tip: use the smart replace function of VSC
+# 3. Save the file and commit it in your main branch
+# 4. Enable the CI/CE with the help of an assistent or teacher
+# 5. You can visit your webapp at the url found as Host Address (see below)
+
+version: "3.7"
+services:
+  YOUR_UNIQUE_PROJECTID:
+    image: gitlab.fdmci.hva.nl:5050/GITLABUSER/PROJECTNAME/main:latest
+    restart: on-failure:2
+    container_name: YOUR_UNIQUE_PROJECTID
+#    environment:
+#      - DISPLAY=:0.0
+    volumes:
+#      - "./nexus-data/data:/nexus-data"
+      - "./acme/acme.json:/acme.json"
+    networks:
+      - proxy
+      - YOUR_UNIQUE_PROJECTID_internal
+    labels:
+      # These labels enable the proxy to connect the external world wide web to this specific docker container
+      # It will also try to obtain a Letsencrypt certificate for it.
+
+      - traefik.enable=true
+      - traefik.docker.network=proxy
+      - traefik.http.routers.traefik-secure.entrypoints=websecure
+      - "traefik.http.routers.YOUR_UNIQUE_PROJECTID.rule=Host(`YOUR_UNIQUE_PROJECTID.hva-fys.nl`)"
+#      - "traefik.http.routers.YOUR_UNIQUE_PROJECTID.tls=true"
+      - "traefik.http.routers.YOUR_UNIQUE_PROJECTID.service=YOUR_UNIQUE_PROJECTID-service"
+      - "traefik.http.services.YOUR_UNIQUE_PROJECTID-service.loadBalancer.server.port=5000"
+
+  # This is your database in your docker cloud environment
+  YOUR_UNIQUE_PROJECTID_db:
+    image: mariadb:latest
+    restart: unless-stopped
+    networks:
+      - YOUR_UNIQUE_PROJECTID_internal
+    environment:
+      MYSQL_ROOT_PASSWORD: DB_PASSWORD
+      MYSQL_DATABASE: Who_Pays_What
+      MYSQL_USER: WhoPaysWhatUser
+      MYSQL_PASSWORD: Whopayswhat1
+    volumes:
+      - data:/var/lib/mysql
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    ports:
+      - "3306:3306"
+
+volumes:
+  data:
+
+networks:
+  proxy:
+    external: true

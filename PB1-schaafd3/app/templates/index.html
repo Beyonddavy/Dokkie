@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+<!--https://www.w3schools.com/howto/howto_js_accordion.asp-->
+
+{% block header %}
+
+<div class="block1 block"></div>
+<div class="title">
+  <h1>{% block title %}Dokkie{% endblock %}</h1>
+</div>
+  <p class="classOne">Dokkie is dé website voor het verdelen, verrekenen, en afrekenen van al je groepsuitgaven. <br>
+    Dokkie is perfect voor vriendengroepen, families, partners, huisgenoten, jaarclubs, verenigingen, collega's, teams, etc.</p>
+   </div>
+  
+{% endblock %}
+
+
+
+
+
+{% block content %}
+      
+  <div class="block2 block">
+      <div class="subblock">
+  <h2>Ga je iets doen met je vrienden?</h2>
+  <p>Maak verschillende lijsten aan voor al je groepsuitgaven: <br> Vakanties, weekendjes weg, avondjes uit, gedeelde huishoudens, <br>sport teams, noem het maar op.</p>
+  </div>
+  <img src="../static/img/Imag1-removebg-preview.jpg.png" class="img1">
+</div>
+
+<div class="block3 block">
+<img src="../static/img/image2-removebg-preview.png" class="img1"> 
+  <div class="subblock">
+<h2>Hou eenvoudig groepsuitgaven bij</h2>
+  <p>Voeg alle uitgaven en inkomsten van de groep toe in 150+ beschikbare valuta’s. <br> Alle deelnemers op een lijst kunnen transacties toevoegen en inzien.</p>
+</div>
+</div>
+
+
+<div class="block4 block">
+  <div class="subblock">
+  <h2>Tijd om te verrekenen?</h4>
+  <p>Bekijk de balans en verreken de lijst. <br> Het WieBetaaltWat algoritme bepaalt de meest efficiënte manier <br> om te verrekenen. Het minimaliseert het aantal benodigde onderlinge betalingen. <br>De verrekening wordt automatisch verstuurd naar alle deelnemers.</p>
+</div>
+<img src="./static/img/image3-removebg-preview.png" class="img1">
+</div>
+
+<div class="block5 block">
+  <img src="./static/img/Imag1-removebg-preview.jpg.png" class="img1">
+  <div class="subblock">
+  <h2>Check jouw verrekening</h5>
+  <p>Bekijk van wie je nog geld krijgt of wie je nog moet betalen. <br> een betaalverzoek of betaal direct met iDEAL of PayPal.</p>
+</div>
+</div>
+
+<div class="block6 block">
+  <div class="subblock">
+  <h2>Ontvang je geld direct <br>op jouw bankrekening</h6>
+  <p>Koppel je bankrekening zodat anderen je makkelijk <br> en snel kunnen terugbetalen via iDEAL. Ontvang notificaties <br> wanneer iemand je heeft terugbetaald. Herinner degene die <br>jou nog moeten betalen.</p>
+  </div>
+  <img src="./static/img/image5-removebg-preview.png" class="img1">
+</div>
+
+<div class="title titlefaq">
+  <h3> FAQs </h3>
+</div>
+
+
+<button class="accordion">Ik ben mijn wachtwoord van mijn account vergeten, wat moet ik nu doen? </button> 
+    <div class="panel">
+      <p> Om weer te kunnen inloggen kan je met je e-mail adres een nieuw wachtwoord aanvragen. Ga hiervoor naar: Herstel wachtwoord.</p>
+    </div>
+
+  <button class="accordion"> Waarom ontvang ik geen email van Dokkie?</button>
+     <div clss="panel">
+      <p>Het kan voorkomen dat de e-mails van Dokkie.nl worden aangezien voor spam. Kijk of je de e-mails kan terugvinden in je spam-filter.
+
+        Kan je het mailtje niet vinden? Vul dan je e-mailadres in via Herstel wachtwoord. Je ontvangt dan een nieuw mailtje.
+        
+        Heb je na 10 minuten nog steeds niks ontvangen? Stuur dan een e-mail naar <a href="mailto:Dokkieinfo@gmail.com">Dokkieinfo</a></p>
+      </div>
+     
+  <button class="accordion">Ik heb meerdere accounts, kan ik deze samenvoegen? </button>
+     <div class="panel">
+      <p>Er is geen functie om meerdere accounts samen te voegen. Wat je wel kunt doen is lijsten overzetten. 
+        Dit kun je doen door jezelf met je nieuwe account toe te voegen aan de lijsten van je oude account. 
+        Vervolgens kun je door middel van een transactie je saldo overzetten en je oude account uit de lijst verwijderen. 
+        Let op: de transacties waar jij aan deelneemt met je oude account, zijn niet meer te bewerken.</p>
+     </div>
+
+  
+    <button class="accordion">Ik wil mijn account verwijderen, hoe doe ik dat? </button>
+     <div class="panel">
+      <p> Om je account te verwijderen moet je balans op al je lijsten 0 zijn. 
+        Klik vervolgens op deze link (zorg dat je bent ingelogd). Hier kun je je account sluiten.</p>
+      </div>
+      <br><br><br><br><br>
+  
+ 
+
+
+{% endblock %}

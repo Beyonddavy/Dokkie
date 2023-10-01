@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Mijn uitjes{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <table>
+    <tr>
+      <th>Omschrijving</th>
+      <th>Datum uitje</th>
+      <th>Registratiedatum</th>
+      <th>Organisator</th>
+      <th>Vervallen</th>
+      <th>Totaal</th>
+    </tr>
+    <tbody>
+      {% for event in events %}
+        <tr>
+          <td><a href="{{ url_for('events.view_page', event_id=event['eventId']) }}">{{ event['description'] }}</a></td>
+          <td>{{ event['eventDate'] }}</td>
+          <td>{{ event['creationDate'] }}</td>
+          <td>{{ event['isOrganizer'] }}</td>
+          <td>{{ event['isExpired'] }}</td>
+          <td>{{ event['totalAmount'] }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div>
+    <a href="{{ url_for('events.create_page') }}">Toevoegen</a>
+  </div>
+{% endblock %}

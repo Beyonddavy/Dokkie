@@ -1,0 +1,17 @@
+# This is the docker compose file to start a mariaDB server image which will contain the database as defined in schema.sql
+version: '3'
+volumes:
+  data:
+services:
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: Who_Pays_What
+      MYSQL_USER: WhoPaysWhatUser
+      MYSQL_PASSWORD: Whopayswhat1
+    volumes:
+      - data:/var/lib/mysql
+      - .:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
